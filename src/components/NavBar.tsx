@@ -20,7 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({ brandName }) => {
       position="sticky"
       color="transparent"
       elevation={0}
-      sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}`, position: 'sticky' }}
     >
       <Toolbar sx={{ flexWrap: 'wrap' }}>
         <Typography
@@ -33,7 +33,25 @@ const NavBar: React.FC<NavBarProps> = ({ brandName }) => {
         >
           {brandName}
         </Typography>
-        <Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Button href="#vision" color="inherit" sx={{ my: 1, mx: 0.5 }}>
+            Vision
+          </Button>
+          <Button href="#apps" color="inherit" sx={{ my: 1, mx: 0.5 }}>
+            Apps
+          </Button>
+          <Button href="#tech" color="inherit" sx={{ my: 1, mx: 0.5 }}>
+            Tech
+          </Button>
+          <Button href="#roadmap" color="inherit" sx={{ my: 1, mx: 0.5 }}>
+            Roadmap
+          </Button>
+          <Button href="#about" color="inherit" sx={{ my: 1, mx: 0.5 }}>
+            About
+          </Button>
+          <Button href="/ideas" variant="contained" sx={{ my: 1, mx: 1 }}>
+            Share Idea
+          </Button>
           <MuiLink
             href="/expense"
             underline="none"
@@ -45,6 +63,18 @@ const NavBar: React.FC<NavBarProps> = ({ brandName }) => {
           </MuiLink>
         </Box>
       </Toolbar>
+      <Box
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 3,
+          background: 'linear-gradient(90deg, #3B82F6 0%, #22D3EE 50%, #A78BFA 100%)',
+          opacity: 0.7,
+        }}
+      />
     </AppBar>
   );
 };

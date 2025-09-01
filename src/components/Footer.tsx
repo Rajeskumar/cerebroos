@@ -9,11 +9,25 @@ const Footer: React.FC = () => {
         py: 3,
         px: 2,
         mt: 'auto',
-        backgroundColor: 'rgba(18, 18, 18, 0.4)',
-        backdropFilter: 'blur(12px)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        bgcolor: 'background.paper',
+        backdropFilter: 'blur(8px)',
+        borderTop: '1px solid',
+        borderColor: 'divider',
+        position: 'relative',
       }}
     >
+      <Box
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 3,
+          background: 'linear-gradient(90deg, #34D399 0%, #F59E0B 50%, #3B82F6 100%)',
+          opacity: 0.65,
+        }}
+      />
       <Container maxWidth="lg">
         <Typography variant="body2" color="text.secondary" align="center">
           © {new Date().getFullYear()} CerebroOS. All rights reserved.
