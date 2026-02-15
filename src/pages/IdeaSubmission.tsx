@@ -11,17 +11,28 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@mui/material';
+import { getApiUrl } from '../config/api';
 
 type IdeaPayload = {
-  name?: string;
-  contactEmail?: string;
   title: string;
   summary: string;
-  links?: string;
   consent: boolean;
-  // anti-abuse
   t: number;
+  submitted_at: string;
+  name?: string;
+  contact_email?: string;
+  links?: string;
   honey?: string;
+};
+
+const formatDateTime = (date: Date): string => {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  return `${day}:${month}:${year} ${hours}:${minutes}:${seconds}`;
 };
 
 const IdeaSubmission: React.FC = () => {
@@ -63,44 +74,27 @@ const IdeaSubmission: React.FC = () => {
     }
     setSubmitting(true);
     try {
-      // Prefer no-backend: use Web3Forms (or similar) from the frontend.
-      // Configure REACT_APP_WEB3FORMS_KEY in your environment. The recipient email
-      // is managed in the provider dashboard and not exposed client-side.
-      const WEB3FORMS_KEY = process.env.REACT_APP_WEB3FORMS_KEY;
-      if (!WEB3FORMS_KEY) {
-        throw new Error('Submission service not configured. Please set REACT_APP_WEB3FORMS_KEY.');
-      }
+      const payload: IdeaPayload = {
+        title: title.trim(),
+        summary: summary.trim(),
+        consent,
+        t: elapsed,
+        submitted_at: formatDateTime(new Date()),
+        name: name || undefined,
+        contact_email: contactEmail || undefined,
+        links: links || undefined,
+        honey: honey || undefined,
+      };
 
-      const payload = {
-        access_key: WEB3FORMS_KEY,
-        subject: `CerebroOS Idea: ${title.trim()}`,
-        from_name: name || 'CerebroOS User',
-        reply_to: contactEmail || undefined,
-        // Compose a single message body for email providers
-        message: [
-          `Title: ${title.trim()}`,
-          `Name: ${name || '-'}`,
-          `Contact: ${contactEmail || '-'}`,
-          `Links: ${links || '-'}`,
-          '',
-          'Summary:',
-          summary.trim(),
-        ].join('\n'),
-        // Anti-abuse fields supported by many providers
-        botcheck: honey || undefined,
-        // Extra metadata (not all providers will persist these)
-        t: String(elapsed),
-        consent: String(consent),
-      } as Record<string, string | undefined>;
-
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(getApiUrl('/api/v1/ideas'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      const data = await res.json().catch(() => ({} as any));
-      if (!res.ok || data?.success !== true) {
-        throw new Error(data?.message || 'Failed to submit idea');
+
+      if (!res.ok) {
+        const errorText = await res.text().catch(() => 'Failed to submit idea');
+        throw new Error(errorText);
       }
       setSuccessOpen(true);
       setName('');
