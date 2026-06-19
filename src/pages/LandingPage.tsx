@@ -38,7 +38,7 @@ const LandingPage: React.FC = () => {
                 Your Personal Operating System for Life.
               </Typography>
               <Typography variant="body1" color="text.secondary" paragraph>
-                Clean, privacy-first, and modular apps for everyday life — starting with VaravuSelavu, our expense tracker, and growing into knowledge, planning, and an intelligent AI assistant.
+                Clean, privacy-first, and modular apps for everyday life — starting with TrackSpense, our expense tracker, and growing into knowledge, planning, and an intelligent AI assistant.
               </Typography>
               <Box sx={{ mt: 3, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 <MuiLink href="/expense" underline="none">
@@ -93,45 +93,45 @@ const LandingPage: React.FC = () => {
           borderColor: 'divider',
           background: 'linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(34,211,238,0.06) 50%, rgba(167,139,250,0.08) 100%)',
         }}>
-        <Typography variant="h2" align="center" color="text.primary" gutterBottom>
-          Apps in the Ecosystem
-        </Typography>
-        <Typography align="center" color="text.secondary" sx={{ mb: 3 }}>
-          A quick glance at what’s live and what’s coming.
-        </Typography>
+          <Typography variant="h2" align="center" color="text.primary" gutterBottom>
+            Apps in the Ecosystem
+          </Typography>
+          <Typography align="center" color="text.secondary" sx={{ mb: 3 }}>
+            A quick glance at what’s live and what’s coming.
+          </Typography>
 
-        <Box sx={{ position: 'relative' }}>
-          <Box id="apps-slider" sx={{ display: 'flex', gap: 3, overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', pb: 1, px: 1 }}>
-            <AppShowcaseSlide
-              title="VaravuSelavu — Expense Tracker"
-              subtitle="Track spending, categorize expenses, and stay on top of your money."
-              ctaLabel="Open VaravuSelavu"
-              ctaHref="/expense"
-              accent="#22d3ee"
-              variant="right"
-              ariaLabel="VaravuSelavu expense tracker slide"
-            />
-            <AppShowcaseSlide
-              title="Personal AI Assistant"
-              subtitle="A context-aware AI to help with planning, knowledge, and everyday actions."
-              ctaLabel="Join the journey"
-              ctaHref="#vision"
-              accent="#a78bfa"
-              variant="left"
-              ariaLabel="Personal AI assistant slide"
-            />
-            <AppShowcaseSlide
-              title="Notes & Knowledge"
-              subtitle="Journaling, tasks, and a personal knowledge base that just flows."
-              ctaLabel="See roadmap"
-              ctaHref="#roadmap"
-              accent="#34d399"
-              variant="right"
-              ariaLabel="Notes and knowledge tools slide"
-            />
+          <Box sx={{ position: 'relative' }}>
+            <Box id="apps-slider" sx={{ display: 'flex', gap: 3, overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', pb: 1, px: 1 }}>
+              <AppShowcaseSlide
+                title="TrackSpense — Expense Tracker"
+                subtitle="Track spending, categorize expenses, and stay on top of your money."
+                ctaLabel="Open TrackSpense"
+                ctaHref="/expense"
+                accent="#22d3ee"
+                variant="right"
+                ariaLabel="TrackSpense expense tracker slide"
+              />
+              <AppShowcaseSlide
+                title="Personal AI Assistant"
+                subtitle="A context-aware AI to help with planning, knowledge, and everyday actions."
+                ctaLabel="Join the journey"
+                ctaHref="#vision"
+                accent="#a78bfa"
+                variant="left"
+                ariaLabel="Personal AI assistant slide"
+              />
+              <AppShowcaseSlide
+                title="Notes & Knowledge"
+                subtitle="Journaling, tasks, and a personal knowledge base that just flows."
+                ctaLabel="See roadmap"
+                ctaHref="#roadmap"
+                accent="#34d399"
+                variant="right"
+                ariaLabel="Notes and knowledge tools slide"
+              />
+            </Box>
+            {/* Prev/Next controls removed — swipe or scroll to navigate */}
           </Box>
-          {/* Prev/Next controls removed — swipe or scroll to navigate */}
-        </Box>
 
         </Box>
       </Container>
@@ -190,30 +190,30 @@ const LandingPage: React.FC = () => {
             Roadmap Snapshot
           </Typography>
           <Grid container spacing={4}>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
-              <Typography variant="h6" gutterBottom>1. Launch Phase</Typography>
-              <Typography color="text.secondary">VaravuSelavu live and stable.</Typography>
-            </Box>
-          </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
-              <Typography variant="h6" gutterBottom>2. Growth Phase</Typography>
-              <Typography color="text.secondary">Add new apps (AI assistant, notes, planners) and enhance UI/UX.</Typography>
-            </Box>
-          </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
-              <Typography variant="h6" gutterBottom>3. AI Integration</Typography>
-              <Typography color="text.secondary">Introduce a user-private AI with intelligent workflows.</Typography>
-            </Box>
-          </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
-              <Typography variant="h6" gutterBottom>4. Ecosystem Maturity</Typography>
-              <Typography color="text.secondary">Modular apps share identity and align in design language.</Typography>
-            </Box>
-          </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
+                <Typography variant="h6" gutterBottom>1. Launch Phase</Typography>
+                <Typography color="text.secondary">TrackSpense live and stable.</Typography>
+              </Box>
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
+                <Typography variant="h6" gutterBottom>2. Growth Phase</Typography>
+                <Typography color="text.secondary">Add new apps (AI assistant, notes, planners) and enhance UI/UX.</Typography>
+              </Box>
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
+                <Typography variant="h6" gutterBottom>3. AI Integration</Typography>
+                <Typography color="text.secondary">Introduce a user-private AI with intelligent workflows.</Typography>
+              </Box>
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Box sx={{ p: 3, borderRadius: 3, border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
+                <Typography variant="h6" gutterBottom>4. Ecosystem Maturity</Typography>
+                <Typography color="text.secondary">Modular apps share identity and align in design language.</Typography>
+              </Box>
+            </Grid>
           </Grid>
         </Box>
       </Container>
