@@ -13,27 +13,15 @@ import {
 } from '@mui/material';
 import { getApiUrl } from '../config/api';
 
-type IdeaPayload = {
-  title: string;
-  summary: string;
-  consent: boolean;
-  t: number;
-  submitted_at: string;
+type SendEmailRequest = {
+  form_type: string;
+  user_email: string;
+  subject: string;
+  message_body: string;
   name?: string;
-  contact_email?: string;
-  links?: string;
-  honey?: string;
 };
 
-const formatDateTime = (date: Date): string => {
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
-  return `${day}:${month}:${year} ${hours}:${minutes}:${seconds}`;
-};
+
 
 const IdeaSubmission: React.FC = () => {
   const [name, setName] = useState('');
@@ -74,21 +62,34 @@ const IdeaSubmission: React.FC = () => {
     }
     setSubmitting(true);
     try {
-      const payload: IdeaPayload = {
-        title: title.trim(),
-        summary: summary.trim(),
-        consent,
-        t: elapsed,
-        submitted_at: formatDateTime(new Date()),
+      const messageBody = `Title: ${title.trim()}
+
+Summary:
+${summary.trim()}
+
+Links/References: ${links || 'None'}
+
+Consent given: ${consent ? 'Yes' : 'No'}
+Time on form: ${elapsed}ms
+Honeypot: ${honey || 'empty'}`;
+
+      const payload: SendEmailRequest = {
+        form_type: 'feature_request',
+        user_email: contactEmail || 'anonymous@cerebroos.com',
+        subject: `Feature Request: ${title.trim()}`,
+        message_body: messageBody,
         name: name || undefined,
-        contact_email: contactEmail || undefined,
-        links: links || undefined,
-        honey: honey || undefined,
       };
 
-      const res = await fetch(getApiUrl('/api/v1/ideas'), {
+      const token = localStorage.getItem('user_token') || '';
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const res = await fetch(getApiUrl('/api/v1/email/send'), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(payload),
       });
 
